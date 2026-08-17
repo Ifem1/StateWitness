@@ -1,0 +1,10 @@
+[project]
+name = "statewitness"
+version = "0.1.0"
+description = "Consensus-certified semantic state transitions for GenLayer"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra"
