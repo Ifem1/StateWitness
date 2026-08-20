@@ -16,13 +16,7 @@ Deterministic code cannot reliably decide semantic conditions such as material c
 
 The leader proposes structured JSON. Validators independently adjudicate the same bounded task. `decision`, violated rule IDs, and missing-precondition presence are consensus-critical; explanatory prose is not. Deterministic code bounds inputs, rejects malformed types, checks versions, records receipts, and applies state only after consensus.
 
-## Rejected directions
-
-- A frontend or dashboard: wrong standalone-contract scope.
-- A generic AI answer store: no reusable state-transition guarantee.
-- A web oracle: source retrieval and corroboration are not the primitive's core question.
-- Multiple consumer contracts: interface documentation is sufficient and avoids unnecessary deployables.
 
 ## Current evidence boundary
 
-Direct Mode is 7/7 passed, preflight is 6/6, and AST lint is 2/2. Studionet deployment and live runtime evidence remain pending because no authenticated GenLayer deployment route was available.
+Direct Mode is 7/7 passed, preflight is 6/6, and AST lint is 2/2. 
