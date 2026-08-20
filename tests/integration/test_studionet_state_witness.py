@@ -34,7 +34,13 @@ def test_studionet_deployment_is_explicitly_configured(live_config):
 
 def test_studionet_success_path_requires_recorded_evidence(live_config):
     assert os.getenv("STATEWITNESS_SUCCESS_TX"), "record a verified success transaction"
+    assert os.getenv("STATEWITNESS_SUCCESS_RESULT") == "VALID"
+    assert os.getenv("STATEWITNESS_SUCCESS_APPLIED") == "true"
+    assert os.getenv("STATEWITNESS_SUCCESS_STATE_VERSION") == "1"
 
 
 def test_studionet_negative_path_requires_recorded_evidence(live_config):
     assert os.getenv("STATEWITNESS_NEGATIVE_TX"), "record a verified negative transaction"
+    assert os.getenv("STATEWITNESS_NEGATIVE_RESULT") == "INVALID"
+    assert os.getenv("STATEWITNESS_NEGATIVE_APPLIED") == "false"
+    assert os.getenv("STATEWITNESS_NEGATIVE_STATE_VERSION") == "1"
