@@ -150,11 +150,11 @@ class StateWitness(gl.Contract):
         def validator_fn(leader_result: typing.Any) -> bool:
             independent = gl.nondet.exec_prompt(task)
             normalized_independent = self._normalize_adjudication(independent)
-            normalized_leader = self._normalize_adjudication(str(leader_result))
+            normalized_leader = self._normalize_adjudication(leader_result)
             return self._equivalent(normalized_leader, normalized_independent)
 
         consensus_result = gl.vm.run_nondet_unsafe(leader_fn, validator_fn)
-        normalized = self._normalize_adjudication(str(consensus_result))
+        normalized = self._normalize_adjudication(consensus_result)
         parsed = json.loads(normalized)
 
         machine = self._get_machine(machine_id)
@@ -329,8 +329,13 @@ CONTEXT:
 ---END CONTEXT---
 """
 
-    def _normalize_adjudication(self, raw: str) -> str:
-        text = raw.strip()
+    def _normalize_adjudication(self, raw: typing.Any) -> str:
+        if isinstance(raw, dict):
+            text = json.dumps(raw, separators=(",", ":"))
+        elif isinstance(raw, str):
+            text = raw.strip()
+        else:
+            raise Exception("invalid adjudication response type")
         if text.startswith("```"):
             text = text.replace("```json", "", 1).replace("```", "", 1).strip()
         parsed = json.loads(text)
@@ -345,6 +350,10 @@ CONTEXT:
 
         if not isinstance(violated, list) or not isinstance(missing, list):
             raise Exception("invalid adjudication arrays")
+        if any(not isinstance(item, str) for item in violated + missing):
+            raise Exception("adjudication arrays must contain strings")
+        if not isinstance(parsed.get("material_reason", ""), str):
+            raise Exception("invalid material reason")
 
         violated = sorted(list(dict.fromkeys([str(x).strip() for x in violated if str(x).strip()])))
         missing = sorted(list(dict.fromkeys([str(x).strip().lower() for x in missing if str(x).strip()])))

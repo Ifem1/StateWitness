@@ -174,6 +174,11 @@ tests/
 docs/
   CONSENSUS.md
   STATE_MODEL.md
+  SECURITY.md
+  INTEGRATION.md
+  DEPLOYMENT.md
+scripts/
+  preflight.py
 examples/
   milestone_workflow.md
 .github/
@@ -208,6 +213,12 @@ pytest tests/direct/ -v
 The tests use GenLayer's direct-mode LLM mocks, so they do not require a running Studio.
 
 For full multi-validator behavior, deploy the contract in GenLayer Studio and exercise the same scenarios with independently configured validators.
+
+## Verification status
+
+The current checkout has no canonical Studionet deployment claim. Direct Mode is verified at 7/7 tests passed, and GenVM AST lint is verified at 2/2 checks passed with `genvm-linter 0.10.0`. Full SDK validation and live deployment require a working GenLayer SDK setup and authenticated network account; see [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the evidence boundary.
+
+Run the independent preflight with `python scripts/preflight.py`. Integration guidance is in [`docs/INTEGRATION.md`](docs/INTEGRATION.md), and the security assumptions are in [`docs/SECURITY.md`](docs/SECURITY.md).
 
 ## Design boundary
 
