@@ -38,4 +38,3 @@ def test_studionet_success_path_requires_recorded_evidence(live_config):
 
 def test_studionet_negative_path_requires_recorded_evidence(live_config):
     assert os.getenv("STATEWITNESS_NEGATIVE_TX"), "record a verified negative transaction"
-
