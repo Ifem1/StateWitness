@@ -218,7 +218,7 @@ For full multi-validator behavior, deploy the contract in GenLayer Studio and ex
 
 The current checkout has no canonical Studionet deployment claim. Direct Mode is verified at 7/7 tests passed, and GenVM AST lint is verified at 2/2 checks passed with `genvm-linter 0.10.0`. Full SDK validation and live deployment require a working GenLayer SDK setup and authenticated network account; see [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the evidence boundary.
 
-Run the independent preflight with `python scripts/preflight.py`. Integration guidance is in [`docs/INTEGRATION.md`](docs/INTEGRATION.md), and the security assumptions are in [`docs/SECURITY.md`](docs/SECURITY.md).
+Run the independent preflight with `python scripts/preflight.py`. The committed Studionet integration suite currently collects 3 tests and skips them unless live deployment evidence variables are configured. Integration guidance is in [`docs/INTEGRATION.md`](docs/INTEGRATION.md), the design audit is in [`DECISION.md`](DECISION.md), and the security assumptions are in [`docs/SECURITY.md`](docs/SECURITY.md).
 
 ## Design boundary
 
