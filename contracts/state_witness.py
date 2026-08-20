@@ -330,6 +330,11 @@ CONTEXT:
 """
 
     def _normalize_adjudication(self, raw: typing.Any) -> str:
+        # Validators receive the SDK's gl.vm.Return envelope rather than the
+        # plain leader payload on live GenLayer. Unwrap only the documented
+        # calldata field, then apply the same strict payload checks.
+        if not isinstance(raw, (str, dict)) and hasattr(raw, "calldata"):
+            raw = raw.calldata
         if isinstance(raw, dict):
             text = json.dumps(raw, separators=(",", ":"))
         elif isinstance(raw, str):
